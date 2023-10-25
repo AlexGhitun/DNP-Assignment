@@ -6,10 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+
     <ItemGroup>
-      <Folder Include="DaoInterfaces\" />
-      <Folder Include="LogicInterfaces\" />
-      <Folder Include="Logic\" />
+      <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
 </Project>

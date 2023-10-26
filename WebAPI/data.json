@@ -1,0 +1,62 @@
+{
+  "Users": [
+    {
+      "Id": 1,
+      "Username": "test1",
+      "Password": "onetwo",
+      "LoggedIn": null
+    },
+    {
+      "Id": 2,
+      "Username": "troels",
+      "Password": "1234",
+      "LoggedIn": null
+    }
+  ],
+  "Posts": [
+    {
+      "Id": 1,
+      "Owner": {
+        "Id": 1,
+        "Username": "test1",
+        "Password": "onetwo",
+        "LoggedIn": null
+      },
+      "Title": "first",
+      "Body": "something"
+    },
+    {
+      "Id": 2,
+      "Owner": {
+        "Id": 1,
+        "Username": "test1",
+        "Password": "onetwo",
+        "LoggedIn": null
+      },
+      "Title": "test2",
+      "Body": "random"
+    },
+    {
+      "Id": 3,
+      "Owner": {
+        "Id": 1,
+        "Username": "test1",
+        "Password": "onetwo",
+        "LoggedIn": null
+      },
+      "Title": "test3",
+      "Body": "string"
+    },
+    {
+      "Id": 4,
+      "Owner": {
+        "Id": 1,
+        "Username": "test1",
+        "Password": "onetwo",
+        "LoggedIn": null
+      },
+      "Title": "testblazor",
+      "Body": "a description"
+    }
+  ]
+}

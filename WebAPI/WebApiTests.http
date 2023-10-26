@@ -1,0 +1,9 @@
+POST http://localhost:5296/auth/login
+Content-Type: application/json
+
+{ "Username" : "trmo", "Password" : "1234" }
+
+###
+
+GET http://localhost:5296/test/loggedin
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiI0YzExZTkxNC1jNTdhLTRjNDEtYTI5Ni0zZDdhMjFhOTAzOTAiLCJpYXQiOiIxMC8yNi8yMDIzIDQ6NTg6NDkgUE0iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidHJtbyIsIkRpc3BsYXlOYW1lIjoidHJtbyIsIkxvZ2dlZEluIjoiWWVzIiwiZXhwIjoxNjk4MzQzMTI5LCJpc3MiOiJKV1RBdXRoZW50aWNhdGlvblNlcnZlciIsImF1ZCI6IkpXVFNlcnZpY2VCbGF6b3JXYXNtQ2xpZW50In0.qL1wo6m5KWvJvoT2KAq8CdTUK1hpfzJYJM2KBaKl-Fd2ipDyxajasGM9ot1gEhmXUHFUVxbdi47ICwhGUK6cKw

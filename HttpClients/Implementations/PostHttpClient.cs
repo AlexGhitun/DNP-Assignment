@@ -25,10 +25,9 @@ public class PostHttpClient : IPostService
         }
     }
     
-    public async Task<ICollection<Post>> GetAsync(string? userName, int? userId, string? titleContains,
-        string? bodyContains)
+    public async Task<ICollection<Post>> GetAsync(string? userName, int? userId, string? titleContains)
     {
-        string query = ConstructQuery(userName, userId, titleContains, bodyContains);
+        string query = ConstructQuery(userName, userId, titleContains);
         
         HttpResponseMessage response = await client.GetAsync("/posts"+query);
         string content = await response.Content.ReadAsStringAsync();
@@ -44,7 +43,7 @@ public class PostHttpClient : IPostService
         return todos;
     }
     
-    private static string ConstructQuery(string? userName, int? userId, string? titleContains, string? bodyContains)
+    private static string ConstructQuery(string? userName, int? userId, string? titleContains)
     {
         string query = "";
         if (!string.IsNullOrEmpty(userName))
@@ -62,12 +61,6 @@ public class PostHttpClient : IPostService
         {
             query += string.IsNullOrEmpty(query) ? "?" : "&";
             query += $"titleContains={titleContains}";
-        }
-        
-        if (!string.IsNullOrEmpty(bodyContains))
-        {
-            query += string.IsNullOrEmpty(query) ? "?" : "&";
-            query += $"bodyContains={bodyContains}";
         }
 
         return query;

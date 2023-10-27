@@ -10,8 +10,7 @@ public interface IPostService
     Task<ICollection<Post>> GetAsync(
         string? userName,
         int? userId,
-        string? titleContains,
-        string? bodyContains
+        string? titleContains
     );
 
     Task UpdateAsync(PostUpdateDto dto);

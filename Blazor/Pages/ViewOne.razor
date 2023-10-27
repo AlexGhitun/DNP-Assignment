@@ -1,0 +1,82 @@
+﻿@page "/ViewOne/{id:int}"
+@using HttpClients.ClientInterfaces
+@using Domain.Models
+@using Domain.DTOs
+@inject IPostService postService
+@inject IUserService userService
+
+<div class="card">
+    @if (users == null)
+        {
+            <label>Loading users...</label>
+        }
+        else if (!users.Any())
+        {
+            <label>No users, you cannot view this Post</label>
+        }
+        else if (dto == null)
+        {
+            <label>Loading Post data..</label>
+        }
+    else
+        {
+            <h3>View Post</h3>
+            <div class="form-group field">
+                <label>Title: @dto.Title</label>
+            </div>
+            <div class="form-group field">
+                <label>By User:</label>
+                <select @bind="dto.OwnerId">
+                    <option>Choose</option>
+                    @foreach (User user in users)
+                    {
+                        <label value="@user.Id">@user.Username</label>
+                    }
+                </select>
+            </div>
+            <div class="form-group field">
+                <label>Body: @dto.Body</label>
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(msg))
+        {
+            <label style="color: red">@msg</label>
+        }
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    
+    private PostUpdateDto dto = null!;
+    private string msg = "";
+    private IEnumerable<User>? users;
+    private Post? post;
+    
+    
+     
+
+    protected override async Task OnInitializedAsync()
+    {
+        // post = await postService.GetByIdAsync(dto.OwnerId);
+        msg = "";
+        try
+        {
+            users = await userService.GetUsersAsync();
+            PostBasicDto postData = await postService.GetByIdAsync(Id);
+            User currentUser = users.First(user => user.Username.Equals(postData.OwnerName));
+
+            dto = new PostUpdateDto(Id)
+            {
+                Title = postData.Title,
+                Body = postData.Body,
+                OwnerId = currentUser.Id,
+            };
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+}

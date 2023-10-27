@@ -46,17 +46,6 @@
       },
       "Title": "test3",
       "Body": "string"
-    },
-    {
-      "Id": 4,
-      "Owner": {
-        "Id": 1,
-        "Username": "test1",
-        "Password": "onetwo",
-        "LoggedIn": null
-      },
-      "Title": "testblazor",
-      "Body": "a description"
     }
   ]
 }

@@ -1,5 +1,10 @@
 namespace Domain.Models;
 
+public class Root
+{
+    public List<User> Users { get; set; }
+}
+
 public class User
 {
     public int Id { get; set; }

@@ -2,7 +2,7 @@ using Application.DaoInterfaces;
 using Domain.DTOs;
 using Domain.Models;
 
-namespace FileData.DAOs.DAOs;
+namespace FileData.DAOs;
 
 public class UserFileDao : IUserDao
 {

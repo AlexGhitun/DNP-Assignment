@@ -3,28 +3,37 @@
 @using HttpClients.ClientInterfaces
 @inject IUserService UserService
 
-<div class="card">
-    <h3>Register</h3>
-    <div class="form-group field">
-        <label>User name:</label>
-        <input type="text" @bind="Username" @bind:event="oninput"/>
-        @if (!string.IsNullOrEmpty(ResultMsg))
-        {
-            <label style="color: @Color">@ResultMsg</label>
-        }
-    </div>
-    <div class="form-group field">
-        <label>Password:</label>
-        <input type="text" @bind="Password" @bind:event="oninput"/>
-        @if (!string.IsNullOrEmpty(ResultMsg))
-        {
-            <label style="color: @Color">@ResultMsg</label>
-        }
-    </div>
-    <div class="button-row">
-        <button @onclick="Create" disabled="@(string.IsNullOrEmpty(Username))" class="acceptbtn">Register</button>
-    </div>
-</div>
+<AuthorizeView>
+    <NotAuthorized>
+        <div class="card">
+            <h3>Register</h3>
+            <div class="form-group field">
+                <label>User name:</label>
+                <input type="text" @bind="Username" @bind:event="oninput"/>
+                @if (!string.IsNullOrEmpty(ResultMsg))
+                {
+                    <label style="color: @Color">@ResultMsg</label>
+                }
+            </div>
+            <div class="form-group field">
+                <label>Password:</label>
+                <input type="password" @bind="Password" @bind:event="oninput"/>
+                @if (!string.IsNullOrEmpty(ResultMsg))
+                {
+                    <label style="color: @Color">@ResultMsg</label>
+                }
+            </div>
+            <div class="button-row">
+                <button @onclick="Create" disabled="@(string.IsNullOrEmpty(Username))" class="acceptbtn">Register</button>
+            </div>
+        </div>
+</NotAuthorized>
+    <Authorized>
+        <div class="card">
+            <h3>Hello, @context.User.Identity.Name</h3>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
 @code {
     private string Username = "";

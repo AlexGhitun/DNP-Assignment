@@ -11,6 +11,18 @@
       "Username": "troels",
       "Password": "1234",
       "LoggedIn": null
+    },
+    {
+      "Id": 3,
+      "Username": "test10",
+      "Password": "password",
+      "LoggedIn": null
+    },
+    {
+      "Id": 4,
+      "Username": "test11",
+      "Password": "password",
+      "LoggedIn": null
     }
   ],
   "Posts": [

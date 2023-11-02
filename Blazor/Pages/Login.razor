@@ -26,6 +26,9 @@
             <div class="field">
                 <button class="loginbtn" @onclick="LoginAsync">Log in</button>
             </div>
+            <div class="field">
+                <button class="loginbtn" title="Register" @onclick="RegisterAsync">Register <span class="oi oi-key"></span></button>
+            </div>
         </div>
     </NotAuthorized>
     <Authorized>
@@ -47,6 +50,20 @@
         {
             await authService.LoginAsync(userName, password);
             navMgr.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            errorLabel = $"Error: {e.Message}";
+        }
+    }
+    
+    private async Task RegisterAsync()
+    {
+        errorLabel = "";
+        try
+        {
+            navMgr.NavigateTo("/Registration");
         }
         catch (Exception e)
         {

@@ -30,8 +30,8 @@ public class AuthController : ControllerBase
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
             new Claim(ClaimTypes.Name, user.Username),
+            new Claim("Id", user.Id.ToString()),
             new Claim("DisplayName", user.Username),
-            new Claim("LoggedIn", user.LoggedIn)
         };
         return claims.ToList();
     }
@@ -59,7 +59,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost, Route("login")]
-    public async Task<ActionResult> Login([FromBody] UserLoginDto userLoginDto)
+    public async Task<ActionResult> Login([FromBody] UserCreationDto userLoginDto)
     {
         try
         {
@@ -72,5 +72,12 @@ public class AuthController : ControllerBase
         {
             return BadRequest(e.Message);
         }
+    }
+    
+    [HttpPost, Route("Register")]
+    public async Task<ActionResult> Register([FromBody] User user)
+    {
+        await authService.RegisterUser(user);
+        return Ok();
     }
 }

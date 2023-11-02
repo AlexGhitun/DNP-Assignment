@@ -3,6 +3,7 @@ using Application.DaoInterfaces;
 using Application.Logic;
 using Application.LogicInterfaces;
 using Domain.Auth;
+using FileData;
 using FileData.DAOs;
 using FileData.DAOs.DAOs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -58,9 +59,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapControllers();
 

@@ -25,16 +25,6 @@
                 <label>Title: @dto.Title</label>
             </div>
             <div class="form-group field">
-                <label>By User:</label>
-                <select @bind="dto.OwnerId">
-                    <option>Choose</option>
-                    @foreach (User user in users)
-                    {
-                        <label value="@user.Id">@user.Username</label>
-                    }
-                </select>
-            </div>
-            <div class="form-group field">
                 <label>Body: @dto.Body</label>
             </div>
         }

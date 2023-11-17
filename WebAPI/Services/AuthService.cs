@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
+using Application.DaoInterfaces;
 using Domain.DTOs;
 using Domain.Models;
 using Root = Domain.Models.Root;
@@ -11,7 +12,13 @@ namespace WebAPI.Services;
 
 public class AuthService : IAuthService
 {
+    private readonly IUserDao userDao;
     private readonly HttpClient client = new();
+
+    public AuthService(IUserDao userDao)
+    {
+        this.userDao = userDao;
+    }
     public Action<ClaimsPrincipal> OnAuthStateChanged { get; set; }
     public static string? Jwt { get; private set; } = "";
     
@@ -34,24 +41,40 @@ public class AuthService : IAuthService
     //     }
     // };
     
-    public Task<User> ValidateUser(string username, string password)
+    public async Task<User> ValidateUser(string username, string password)
     {
-        string json = File.ReadAllText("data.json");
-        Root users = JsonSerializer.Deserialize<Root>(json);
-
-        User existingUser = users.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
-
-        if (existingUser == null)
+        // string json = File.ReadAllText("data.json");
+        // Root users = JsonSerializer.Deserialize<Root>(json);
+        //
+        // User existingUser = users.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
+        //
+        // if (existingUser == null)
+        // {
+        //     throw new Exception("User not found");
+        // }
+        //
+        // if (!existingUser.Password.Equals(password))
+        // {
+        //     throw new Exception("Password doesn't match");
+        // }
+        //
+        // return Task.FromResult(existingUser);
+        
+        User? user = await userDao.GetByUsernameAsync(username);
+        
+        if (username == null)
         {
             throw new Exception("User not found");
         }
-
-        if (!existingUser.Password.Equals(password))
+        
+        if (!user.Password.Equals(password))
         {
             throw new Exception("Password doesn't match");
         }
-
-        return Task.FromResult(existingUser);
+        
+        return user;
+        
+        
 
         // User? existingUser = users.FirstOrDefault(u =>
         //     u.Username.Equals(username, StringComparison.OrdinalIgnoreCase));

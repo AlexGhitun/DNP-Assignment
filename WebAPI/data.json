@@ -23,6 +23,12 @@
       "Username": "test11",
       "Password": "password",
       "LoggedIn": null
+    },
+    {
+      "Id": 5,
+      "Username": "usertest",
+      "Password": "password",
+      "LoggedIn": null
     }
   ],
   "Posts": [
@@ -58,6 +64,28 @@
       },
       "Title": "test3",
       "Body": "string"
+    },
+    {
+      "Id": 4,
+      "Owner": {
+        "Id": 2,
+        "Username": "troels",
+        "Password": "1234",
+        "LoggedIn": null
+      },
+      "Title": "my first post",
+      "Body": "Description of post"
+    },
+    {
+      "Id": 5,
+      "Owner": {
+        "Id": 2,
+        "Username": "troels",
+        "Password": "1234",
+        "LoggedIn": null
+      },
+      "Title": "Second post",
+      "Body": "Something for description"
     }
   ]
 }
